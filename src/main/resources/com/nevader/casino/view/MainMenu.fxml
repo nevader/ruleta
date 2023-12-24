@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="286.0" layoutY="120.0" text="test" />
-      <Button fx:id="test" layoutX="296.0" layoutY="249.0" mnemonicParsing="false" text="xxdd" />
+      <ImageView fx:id="screenshot" fitHeight="328.0" fitWidth="371.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="174.0" layoutY="352.0" mnemonicParsing="false" onAction="#button" text="Button" />
+      <TextArea fx:id="ocrText" layoutX="404.0" layoutY="8.0" prefHeight="384.0" prefWidth="181.0" />
+      <Button layoutX="254.0" layoutY="352.0" mnemonicParsing="false" onAction="#set" text="set" />
    </children>
 </AnchorPane>

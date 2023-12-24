@@ -1,6 +1,15 @@
 package com.nevader.casino.services;
 
+import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
 import java.awt.*;
+import java.awt.event.AWTEventListener;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,6 +19,7 @@ public class ScreenshotService {
 
     private final Robot robot;
     private Rectangle rectangle;
+
 
     public ScreenshotService() {
 
@@ -23,7 +33,14 @@ public class ScreenshotService {
         this.rectangle = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
     }
 
-    public void takeScreenshot() {
-
+    public BufferedImage takeScreenshot() {
+        return robot.createScreenCapture(rectangle);
     }
+
+    public Image bufferedImageToFx(BufferedImage bufferedImage) {
+        return SwingFXUtils.toFXImage(bufferedImage, null);
+    }
+
+
+
 }
