@@ -25,11 +25,13 @@
             <artifactId>javafx-fxml</artifactId>
             <version>21-ea+5</version>
         </dependency>
+
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20210307</version>
+            <version>20231013</version>
         </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-media</artifactId>
@@ -62,6 +64,11 @@
             <version>2.0.9</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.openpnp</groupId>
+            <artifactId>opencv</artifactId>
+            <version>4.5.1-2</version>
+        </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>

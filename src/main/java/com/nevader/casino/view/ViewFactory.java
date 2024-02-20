@@ -2,6 +2,7 @@ package com.nevader.casino.view;
 
 import com.nevader.casino.controller.BaseController;
 import com.nevader.casino.controller.MainMenuController;
+import com.nevader.casino.controller.RouletteController;
 import com.nevader.casino.controller.ScreenRegionSelectorController;
 import com.nevader.casino.services.OCRProcessorService;
 import com.nevader.casino.services.ScreenshotService;
@@ -65,6 +66,13 @@ public class ViewFactory {
     public Stage showScreenRegionSelector() {
 
         BaseController controller = new ScreenRegionSelectorController(this, "ScreenRegionSlector.fxml", this.screenshotService, this.ocrProcessorService);
+        return initializeStage(controller);
+
+    }
+
+    public Stage showRouletteController() {
+
+        BaseController controller = new RouletteController(this, "Roulette.fxml", this.screenshotService, this.ocrProcessorService);
         return initializeStage(controller);
 
     }

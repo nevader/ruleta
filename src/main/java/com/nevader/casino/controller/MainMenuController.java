@@ -10,13 +10,18 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import net.sourceforge.tess4j.Word;
 import org.json.JSONObject;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class MainMenuController extends BaseController {
 
@@ -52,11 +57,30 @@ public class MainMenuController extends BaseController {
             e.printStackTrace();
         }
 
-        bufferedImage = screenshotService.takeScreenshot();
-        BufferedImage croppedImage = bufferedImage.getSubimage(x, y, width, height);
-        showScreenshot(croppedImage);
-        String ocr = ocrProcessorService.doOCR(croppedImage);
-        ocrText.setText(ocr);
+        try {
+            bufferedImage = ImageIO.read(getClass().getResource("test.jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        BufferedImage filters = screenshotService.applyFilters(bufferedImage);
+
+        showScreenshot(filters);
+        System.out.println(filters.getWidth());
+        System.out.println(filters.getHeight());
+
+        String numbers = ocrProcessorService.doOCR(filters);
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        String[] words = numbers.split(" ");
+
+        for (String word : words) {
+            stringBuilder.append(word);
+            stringBuilder.append("\n");
+        }
+
+        ocrText.setText(stringBuilder.toString());
 
 
 
@@ -77,4 +101,6 @@ public class MainMenuController extends BaseController {
     public void showScreenshot(BufferedImage bufferedImage) {
         screenshot.setImage(screenshotService.bufferedImageToFx(bufferedImage));
     }
+
+
 }

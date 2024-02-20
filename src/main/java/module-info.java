@@ -6,6 +6,7 @@ module com.nevader.casino {
     requires tess4j;
     requires java.logging;
     requires org.json;
+    requires opencv;
 
 
     exports com.nevader.casino.view;
