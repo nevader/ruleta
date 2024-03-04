@@ -36,8 +36,12 @@ public class ScreenshotService {
         this.rectangle = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
     }
 
-    public BufferedImage takeScreenshot() {
+    public BufferedImage takeScreenshot(Rectangle rectangle) {
         return robot.createScreenCapture(rectangle);
+    }
+
+    public BufferedImage takeScreenshot() {
+        return robot.createScreenCapture(this.rectangle);
     }
 
     public Image bufferedImageToFx(BufferedImage bufferedImage) {

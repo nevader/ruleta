@@ -4,36 +4,23 @@ import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 import net.sourceforge.tess4j.Word;
-import org.opencv.core.*;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static net.sourceforge.tess4j.ITessAPI.TessOcrEngineMode.OEM_LSTM_ONLY;
-import static net.sourceforge.tess4j.ITessAPI.TessPageSegMode.PSM_SINGLE_LINE;
 
 public class OCRProcessorService {
 
     private ITesseract tesseract;
     private static final Logger LOGGER = Logger.getLogger(OCRProcessorService.class.getName());
 
-    public OCRProcessorService(String tessreactPath) {
+    public OCRProcessorService() {
         this.tesseract = new Tesseract();
-        tesseract.setDatapath(tessreactPath);
         tesseract.setLanguage("eng");
-        tesseract.setPageSegMode(PSM_SINGLE_LINE);
-        tesseract.setOcrEngineMode(OEM_LSTM_ONLY);
-        tesseract.setVariable("tessedit_char_whitelist", "0123456789 ");
+    }
+
+    public void setTesseract(String tessreactPath) {
+        tesseract.setDatapath(tessreactPath);
     }
 
     public List<Word> findNumbers (BufferedImage bufferedImage) {
